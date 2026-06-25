@@ -1,7 +1,3 @@
-/* =============================================
-   GNC Landing Page — Custom Styles
-   ============================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Allison&family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Passion+One:wght@400;700;900&family=Petit+Formal+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tiny5&display=swap');
 
 :root {
@@ -22,8 +18,8 @@ body {
 }
 
 /* =============================================
-   NAVBAR
-   ============================================= */
+NAVBAR
+============================================= */
 .gnc-navbar {
     background-color: var(--gnc-green) !important;
     padding-top: 0;
@@ -44,13 +40,15 @@ body {
     color: var(--gnc-white);
     line-height: 1.1;
     letter-spacing: 0.01em;
+    font-family: 'Noto Serif', serif;
 }
 
 .gnc-navbar .brand-text .brand-tagline {
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.75);
+    color: var(--gnc-gold);
     font-style: italic;
     line-height: 1;
+    margin-top: 5px;
 }
 
 .gnc-navbar .nav-link {
@@ -110,34 +108,149 @@ body {
 }
 
 /* =============================================
-   HERO SECTION
-   ============================================= */
-.gnc-hero,
-.landing-page {
+HERO SLIDESHOW WRAPPER
+============================================= */
+.hero-slideshow {
     position: relative;
     width: 100%;
-    /* Extra bottom padding so content doesn't hide behind the overlapping pillars card */
     min-height: calc(100vh - 64px);
-    padding-bottom: 80px;
+    overflow: hidden;
+    background: #000;
+    padding-bottom: 0;
+}
+
+/* =============================================
+INDIVIDUAL SLIDES
+============================================= */
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition:
+        transform 0.75s cubic-bezier(0.77, 0, 0.175, 1),
+        opacity   0.75s ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.hero-slide.exit-left {
+    opacity: 0;
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.hero-slide.exit-right {
+    opacity: 0;
+    transform: translateX(100%);
+    z-index: 1;
+}
+
+.hero-slide.enter-from-left {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.hero-slide.enter-from-right {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        rgba(9, 64, 36, 0.72) 0%,
+        rgba(0, 0, 0, 0.45) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    z-index: 1;
+}
+
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    animation: kenBurns 10s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+}
+
+.hero-slide:not(.active) .slide-bg {
+    animation-play-state: paused;
+}
+
+.slide-video-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.slide-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =============================================
+HERO CONTENT 
+============================================= */
+.hero-slide .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    min-height: calc(100vh - 64px);
     display: flex;
     align-items: center;
 }
 
-.gnc-hero .hero-content,
-.landing-page .hero-content {
+.hero-content {
     position: relative;
-    z-index: 1;
     text-align: left;
     max-width: 600px;
+
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s ease 0.35s, transform 0.55s ease 0.35s;
 }
 
-.gnc-hero .hero-content h1,
-.landing-page .hero-content h1 {
+.hero-content.content-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gnc-gold);
+    border: 1px solid rgba(234, 186, 59, 0.5);
+    border-radius: 4px;
+    padding: 0.2rem 0.7rem;
+    margin-bottom: 0.9rem;
+}
+
+.hero-title-gold {
     font-family: 'Noto Serif', serif;
-}
-
-.gnc-hero .hero-title-gold,
-.landing-page .hero-title-gold {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     color: var(--gnc-gold);
@@ -146,8 +259,8 @@ body {
     letter-spacing: 0.01em;
 }
 
-.gnc-hero .hero-title-white,
-.landing-page .hero-title-white {
+.hero-title-white {
+    font-family: 'Noto Serif', serif;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     color: var(--gnc-white);
@@ -156,8 +269,7 @@ body {
     letter-spacing: 0.01em;
 }
 
-.gnc-hero .hero-desc,
-.landing-page .hero-desc {
+.hero-desc {
     font-size: 0.95rem;
     color: rgba(255,255,255,0.88);
     line-height: 1.6;
@@ -165,15 +277,13 @@ body {
     max-width: 420px;
 }
 
-.gnc-hero .hero-ctas,
-.landing-page .hero-ctas {
+.hero-ctas {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
 
-.gnc-hero .btn-enroll,
-.landing-page .btn-enroll {
+.btn-enroll {
     background-color: var(--gnc-gold);
     color: var(--gnc-green);
     border: 2px solid var(--gnc-gold);
@@ -189,14 +299,13 @@ body {
     gap: 6px;
     transition: background-color 0.15s, color 0.15s;
 }
-.gnc-hero .btn-enroll:hover,
-.landing-page .btn-enroll:hover {
+.btn-enroll:hover {
     background-color: var(--gnc-gold-light);
     border-color: var(--gnc-gold-light);
+    color: var(--gnc-green);
 }
 
-.gnc-hero .btn-explore,
-.landing-page .btn-explore {
+.btn-explore {
     background-color: transparent;
     color: var(--gnc-white);
     border: 2px solid rgba(255,255,255,0.6);
@@ -211,51 +320,83 @@ body {
     align-items: center;
     transition: background-color 0.15s, border-color 0.15s;
 }
-.gnc-hero .btn-explore:hover,
-.landing-page .btn-explore:hover {
+.btn-explore:hover {
     background-color: rgba(255,255,255,0.12);
     border-color: var(--gnc-white);
 }
 
-/* Carousel dots — sit just above the overlap point */
-.gnc-hero .hero-dots,
-.landing-page .hero-dots {
+/* =============================================
+NAVIGATION ARROWS
+============================================= */
+.slide-arrow {
     position: absolute;
-    bottom: 95px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.slide-arrow:hover {
+    background: rgba(234, 186, 59, 0.25);
+    border-color: var(--gnc-gold);
+}
+
+.slide-arrow-prev { left: 1.25rem; }
+.slide-arrow-next { right: 1.25rem; }
+
+/* =============================================
+DOT INDICATORS
+============================================= */
+.hero-dots {
+    position: absolute;
+    bottom: 80px; 
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 6px;
-    z-index: 2;
+    gap: 8px;
+    z-index: 10;
+    align-items: center;
 }
-.gnc-hero .hero-dots span,
-.landing-page .hero-dots span {
+
+.hero-dots span {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: rgba(255,255,255,0.4);
     display: block;
+    cursor: pointer;
+    transition: width 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
 }
-.gnc-hero .hero-dots span.active,
-.landing-page .hero-dots span.active {
+
+.hero-dots span.active {
     background-color: var(--gnc-gold);
-    width: 24px;
+    width: 28px;
     border-radius: 4px;
 }
 
 /* =============================================
-   PILLARS CARD STRIP — overlaps the hero
-   ============================================= */
+PILLARS CARD STRIP
+============================================= */
 .gnc-pillars {
     position: relative;
     z-index: 20;
-    /* Pull the card UP to overlap the bottom of the hero */
     margin-top: -60px;
     padding: 0 1rem;
 }
 
 .gnc-pillars .pillar-card {
-    background: #ffffff;
+    background: var(--gnc-white);
     border-radius: 14px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
     padding: 1.4rem 1rem;
@@ -308,6 +449,7 @@ body {
 .gnc-pillars .pillar-title {
     font-size: 0.92rem;
     font-weight: 800;
+    font-family: 'Noto Serif', serif;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 2px;
@@ -326,15 +468,21 @@ body {
 }
 
 /* =============================================
-   RESPONSIVE
-   ============================================= */
+RESPONSIVE
+============================================= */
 @media (max-width: 768px) {
-    .gnc-hero .hero-title-gold,
-    .gnc-hero .hero-title-white,
-    .landing-page .hero-title-gold,
-    .landing-page .hero-title-white {
+    .hero-title-gold,
+    .hero-title-white {
         font-size: 1.8rem;
     }
+
+    .slide-arrow {
+        width: 36px;
+        height: 36px;
+    }
+    .slide-arrow-prev { left: 0.6rem; }
+    .slide-arrow-next { right: 0.6rem; }
+
     .gnc-pillars {
         margin-top: -40px;
         padding: 0 0.75rem;
@@ -354,8 +502,29 @@ body {
 }
 
 /* =============================================
-   SEARCH BOX
-   ============================================= */
+REDUCED MOTION
+============================================= */
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide {
+        transition: opacity 0.4s ease;
+        transform: none !important;
+    }
+    .hero-slide.exit-left,
+    .hero-slide.exit-right {
+        transform: none !important;
+    }
+    .slide-bg {
+        animation: none;
+    }
+    .hero-content {
+        transition: opacity 0.3s ease 0.2s;
+        transform: none !important;
+    }
+}
+
+/* =============================================
+SEARCH BOX
+============================================= */
 #search-box-item .form-control {
     background-color: rgba(255,255,255,0.15);
     border: 1px solid rgba(255,255,255,0.3);
