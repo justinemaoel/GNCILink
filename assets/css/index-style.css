@@ -1,0 +1,371 @@
+/* =============================================
+   GNC Landing Page — Custom Styles
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Allison&family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Passion+One:wght@400;700;900&family=Petit+Formal+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tiny5&display=swap');
+
+:root {
+    --gnc-green:      #094024;
+    --gnc-gold:       #EABA3B;
+    --gnc-gold-light: #E2C06A;
+    --gnc-white:      #F9F6F1;
+    --gnc-dark:       #1a1a1a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.gnc-navbar {
+    background-color: var(--gnc-green) !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 64px;
+    z-index: 1030;
+}
+
+.gnc-navbar .navbar-brand img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+}
+
+.gnc-navbar .brand-text .brand-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gnc-white);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+}
+
+.gnc-navbar .brand-text .brand-tagline {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    line-height: 1;
+}
+
+.gnc-navbar .nav-link {
+    color: rgba(255,255,255,0.88) !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 0.7rem !important;
+    transition: color 0.15s;
+}
+
+.gnc-navbar .nav-link:hover {
+    color: var(--gnc-white) !important;
+}
+
+.gnc-navbar .nav-item.active .nav-link,
+.gnc-navbar .nav-link.active {
+    background-color: var(--gnc-white);
+    color: var(--gnc-green) !important;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.gnc-navbar .btn-search {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.88) !important;
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    align-items: center;
+}
+.gnc-navbar .btn-search:hover { color: var(--gnc-white) !important; }
+
+.gnc-navbar .btn-portal {
+    background-color: var(--gnc-gold);
+    color: var(--gnc-green) !important;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.42rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+.gnc-navbar .btn-portal:hover {
+    background-color: var(--gnc-gold-light);
+}
+
+.gnc-navbar .navbar-toggler {
+    border-color: rgba(255,255,255,0.4);
+}
+.gnc-navbar .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.gnc-hero,
+.landing-page {
+    position: relative;
+    width: 100%;
+    /* Extra bottom padding so content doesn't hide behind the overlapping pillars card */
+    min-height: calc(100vh - 64px);
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.gnc-hero .hero-content,
+.landing-page .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    max-width: 600px;
+}
+
+.gnc-hero .hero-content h1,
+.landing-page .hero-content h1 {
+    font-family: 'Noto Serif', serif;
+}
+
+.gnc-hero .hero-title-gold,
+.landing-page .hero-title-gold {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--gnc-gold);
+    line-height: 1.1;
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
+}
+
+.gnc-hero .hero-title-white,
+.landing-page .hero-title-white {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--gnc-white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+}
+
+.gnc-hero .hero-desc,
+.landing-page .hero-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    max-width: 420px;
+}
+
+.gnc-hero .hero-ctas,
+.landing-page .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.gnc-hero .btn-enroll,
+.landing-page .btn-enroll {
+    background-color: var(--gnc-gold);
+    color: var(--gnc-green);
+    border: 2px solid var(--gnc-gold);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.15s, color 0.15s;
+}
+.gnc-hero .btn-enroll:hover,
+.landing-page .btn-enroll:hover {
+    background-color: var(--gnc-gold-light);
+    border-color: var(--gnc-gold-light);
+}
+
+.gnc-hero .btn-explore,
+.landing-page .btn-explore {
+    background-color: transparent;
+    color: var(--gnc-white);
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+.gnc-hero .btn-explore:hover,
+.landing-page .btn-explore:hover {
+    background-color: rgba(255,255,255,0.12);
+    border-color: var(--gnc-white);
+}
+
+/* Carousel dots — sit just above the overlap point */
+.gnc-hero .hero-dots,
+.landing-page .hero-dots {
+    position: absolute;
+    bottom: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+.gnc-hero .hero-dots span,
+.landing-page .hero-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.4);
+    display: block;
+}
+.gnc-hero .hero-dots span.active,
+.landing-page .hero-dots span.active {
+    background-color: var(--gnc-gold);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* =============================================
+   PILLARS CARD STRIP — overlaps the hero
+   ============================================= */
+.gnc-pillars {
+    position: relative;
+    z-index: 20;
+    /* Pull the card UP to overlap the bottom of the hero */
+    margin-top: -60px;
+    padding: 0 1rem;
+}
+
+.gnc-pillars .pillar-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    padding: 1.4rem 1rem;
+}
+
+.gnc-pillars .pillar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.gnc-pillars .pillar-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem 1.5rem;
+    position: relative;
+}
+
+.gnc-pillars .pillar-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background-color: rgba(0,0,0,0.12);
+}
+
+.gnc-pillars .pillar-icon-wrap {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gnc-pillars .pillar-icon-wrap.fides-bg    { background-color: #fdf3e3; }
+.gnc-pillars .pillar-icon-wrap.scientia-bg { background-color: #eaf5ee; }
+.gnc-pillars .pillar-icon-wrap.patria-bg   { background-color: #fdeaea; }
+
+.gnc-pillars .pillar-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+}
+
+.gnc-pillars .pillar-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+
+.gnc-pillars .pillar-title.fides-color    { color: #EABA3B; }
+.gnc-pillars .pillar-title.scientia-color { color: #094024; }
+.gnc-pillars .pillar-title.patria-color   { color: #b03030; }
+
+.gnc-pillars .pillar-desc {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+    .gnc-hero .hero-title-gold,
+    .gnc-hero .hero-title-white,
+    .landing-page .hero-title-gold,
+    .landing-page .hero-title-white {
+        font-size: 1.8rem;
+    }
+    .gnc-pillars {
+        margin-top: -40px;
+        padding: 0 0.75rem;
+    }
+    .gnc-pillars .pillar-wrap {
+        flex-direction: column;
+    }
+    .gnc-pillars .pillar-item:not(:last-child)::after { display: none; }
+    .gnc-pillars .pillar-item {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .gnc-pillars .pillar-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* =============================================
+   SEARCH BOX
+   ============================================= */
+#search-box-item .form-control {
+    background-color: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 0.82rem;
+}
+#search-box-item .form-control::placeholder { color: rgba(255,255,255,0.6); }
+#search-box-item .form-control:focus {
+    background-color: rgba(255,255,255,0.2);
+    border-color: var(--gnc-gold);
+    box-shadow: none;
+    color: white;
+}
